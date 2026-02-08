@@ -79,7 +79,7 @@ class CNCcam:
     def __init__(self,argv):
         default_file = 'outdrill_correct.drl'
         
-        self.filename = sys.argv[1] if len(sys.argv) > 0 else default_file
+        self.filename = sys.argv[1] if len(sys.argv) > 1 else default_file
         print("file is : " + self.filename) 
         
         for number in range(1,11):
@@ -1293,6 +1293,7 @@ class Handler:
         
         
         widget.queue_draw()
+        self.darea.queue_draw()
     
     def verify_drill(self, drill_id):
         drill_xpos = self.mycnccam.drillcoords[drill_id][2]
@@ -1492,7 +1493,7 @@ if __name__ == "__main__":
     
     myHandler = Handler()
     builder = Gtk.Builder()
-    builder.add_from_file("drill_triel2.glade")
+    builder.add_from_file("fundrill.gui")
     builder.connect_signals(myHandler)
     
     window = builder.get_object("window1")
